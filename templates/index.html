@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Converter - GAMER LINK CONVERTER</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #0f0f1a 25%, #1a1a2e 50%, #0f0f1a 75%, #0a0a0f 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 25px;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 123, 255, 0.2);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo img {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+        }
+
+        .nav-logo span {
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #007bff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 123, 255, 0.1);
+            padding: 5px 15px 5px 8px;
+            border-radius: 40px;
+            border: 1px solid rgba(0, 123, 255, 0.3);
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid #007bff;
+            object-fit: cover;
+        }
+
+        .user-name {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            background: rgba(220, 53, 69, 0.2);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            color: #dc3545;
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* 3 Dot Menu Button */
+        .menu-btn {
+            background: rgba(0, 123, 255, 0.2);
+            border: 1px solid rgba(0, 123, 255, 0.3);
+            color: #007bff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+            margin-left: 10px;
+        }
+
+        .menu-btn:hover {
+            background: rgba(0, 123, 255, 0.3);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 70px;
+            right: 0;
+            width: 280px;
+            height: calc(100vh - 70px);
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(0, 123, 255, 0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 99;
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-menu {
+            padding: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #fff;
+        }
+
+        .menu-item:hover {
+            background: rgba(0, 123, 255, 0.1);
+            border-left: 3px solid #007bff;
+        }
+
+        .menu-item.active {
+            background: rgba(0, 123, 255, 0.15);
+            border-left: 3px solid #007bff;
+        }
+
+        .menu-item i {
+            font-size: 18px;
+            color: #007bff;
+            width: 25px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
+            padding: 25px;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* Home View (Converter) */
+        .home-view {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .upload-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 35px;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+        }
+
+        .upload-area {
+            border: 2px dashed rgba(0, 123, 255, 0.3);
+            border-radius: 20px;
+            padding: 55px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-area:hover {
+            border-color: #007bff;
+            background: rgba(0, 123, 255, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 55px;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .upload-hint {
+            color: #888;
+            font-size: 13px;
+        }
+
+        #imageInput {
+            display: none;
+        }
+
+        .preview-container {
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 12px;
+            border: 2px solid #007bff;
+        }
+
+        .convert-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .convert-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        .convert-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .url-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .url-text {
+            flex: 1;
+            color: #00d4ff;
+            font-size: 12px;
+            word-break: break-all;
+        }
+
+        .copy-btn, .download-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .copy-btn:hover, .download-btn:hover {
+            background: #0056b3;
+        }
+
+        .reset-btn {
+            width: 100%;
+            margin-top: 15px;
+            background: #6c757d;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .reset-btn:hover {
+            background: #5a6268;
+        }
+
+        /* History View */
+        .history-view {
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .history-view h2 {
+            color: #007bff;
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .history-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 18px;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .history-card:hover {
+            transform: translateY(-3px);
+            border-color: #007bff;
+        }
+
+        .history-card .url {
+            font-size: 11px;
+            color: #00d4ff;
+            word-break: break-all;
+            margin-bottom: 12px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            margin-bottom: 12px;
+        }
+
+        .status-active {
+            background: #28a745;
+            color: white;
+        }
+
+        .status-deactive {
+            background: #dc3545;
+            color: white;
+        }
+
+        .history-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .copy-history-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .toggle-history-btn {
+            background: rgba(0, 123, 255, 0.2);
+            border: 1px solid #007bff;
+            color: #007bff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .toggle-history-btn.deactive {
+            background: rgba(220, 53, 69, 0.2);
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            text-align: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(0, 123, 255, 0.3);
+            border-top-color: #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            z-index: 2000;
+            animation: fadeInOut 3s ease;
+            font-size: 14px;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            15% { opacity: 1; transform: translateY(0); }
+            85% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+            .nav-logo span {
+                font-size: 14px;
+            }
+            .user-info {
+                padding: 3px 10px 3px 5px;
+            }
+            .user-name {
+                display: none;
+            }
+            .sidebar {
+                width: 250px;
+            }
+            .history-grid {
+                grid-template-columns: 1fr;
+            }
+            .home-view {
+                padding: 0 10px;
+            }
+            .upload-card {
+                padding: 20px;
+            }
+            .upload-area {
+                padding: 40px 15px;
+            }
+            .upload-text {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p style="color:#fff;"><i class="fas fa-sync-alt"></i> Processing your image...</p>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="https://www.image2url.com/r2/default/images/1781308769312-81508059-0f9b-4766-97f8-23ea91aaf7b8.png" alt="Logo">
+            <span>GAMER LINK CONVERTER</span>
+        </div>
+        <div class="nav-right">
+            <div id="userInfo" class="user-info"></div>
+            <button class="menu-btn" id="menuBtn">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-menu">
+            <div class="menu-item active" data-view="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </div>
+            <div class="menu-item" data-view="history">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Home View - Image Converter -->
+        <div class="home-view" id="homeView">
+            <div class="upload-card">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div class="upload-text">Click or drag & drop image here</div>
+                    <div class="upload-hint">JPG, PNG, GIF, WEBP (Max 10MB)</div>
+                    <input type="file" id="imageInput" accept="image/*">
+                </div>
+                <div class="preview-container" id="previewContainer">
+                    <img class="preview-image" id="previewImage" alt="Preview">
+                </div>
+                <button class="convert-btn" id="convertBtn" disabled>Convert to URL</button>
+                <div class="result-container" id="resultContainer">
+                    <div class="url-box">
+                        <div class="url-text" id="urlText"></div>
+                        <button class="copy-btn" id="copyBtn"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="download-btn" id="downloadBtn"><i class="fas fa-download"></i> Download</button>
+                    </div>
+                </div>
+                <button class="reset-btn" id="resetBtn"><i class="fas fa-sync-alt"></i> New Image</button>
+            </div>
+        </div>
+
+        <!-- History View -->
+        <div class="history-view" id="historyView">
+            <h2><i class="fas fa-history"></i> Your Image History</h2>
+            <div id="historyGrid" class="history-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentFile = null;
+        let currentImageUrl = '';
+        let currentImageId = '';
+
+        const uploadArea = document.getElementById('uploadArea');
+        const imageInput = document.getElementById('imageInput');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        const convertBtn = document.getElementById('convertBtn');
+        const resultContainer = document.getElementById('resultContainer');
+        const urlText = document.getElementById('urlText');
+        const copyBtn = document.getElementById('copyBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const homeView = document.getElementById('homeView');
+        const historyView = document.getElementById('historyView');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            }
+        });
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const view = item.dataset.view;
+                
+                menuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                
+                if (view === 'home') {
+                    homeView.style.display = 'block';
+                    historyView.style.display = 'none';
+                } else {
+                    homeView.style.display = 'none';
+                    historyView.style.display = 'block';
+                    loadHistory();
+                }
+                
+                sidebar.classList.remove('open');
+            });
+        });
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = '<i class="fas fa-check-circle"></i> ' + message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        async function checkAuth() {
+            try {
+                const response = await fetch('/api/check-auth');
+                const data = await response.json();
+                if (data.authenticated) {
+                    document.getElementById('userInfo').innerHTML = `
+                        <img src="${data.user.picture}" class="user-avatar">
+                        <span class="user-name">${data.user.name.split(' ')[0]}</span>
+                        <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+                    `;
+                } else {
+                    window.location.href = '/';
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function logout() {
+            window.location.href = '/logout';
+        }
+
+        async function loadHistory() {
+            try {
+                const response = await fetch('/api/user/history');
+                const data = await response.json();
+                const historyGrid = document.getElementById('historyGrid');
+                
+                if (data.images.length === 0) {
+                    historyGrid.innerHTML = '<p style="color:#888; text-align:center; grid-column:1/-1;">No images uploaded yet</p>';
+                    return;
+                }
+                
+                historyGrid.innerHTML = data.images.map(img => `
+                    <div class="history-card">
+                        <div class="url">
+                            <i class="fas fa-link"></i> ${img.url}
+                        </div>
+                        <div>
+                            <span class="status-badge ${img.status === 'active' ? 'status-active' : 'status-deactive'}">${img.status}</span>
+                        </div>
+                        <div class="history-actions">
+                            <button class="copy-history-btn" onclick="copyToClipboard('${img.url}')"><i class="fas fa-copy"></i> Copy URL</button>
+                            <button class="toggle-history-btn ${img.status === 'deactive' ? 'deactive' : ''}" onclick="toggleStatus('${img.id}', '${img.status}')">
+                                <i class="fas fa-${img.status === 'active' ? 'toggle-on' : 'toggle-off'}"></i> ${img.status === 'active' ? 'Deactivate' : 'Activate'}
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        async function toggleStatus(imageId, currentStatus) {
+            try {
+                const response = await fetch(`/api/toggle-status/${imageId}`, { method: 'POST' });
+                const data = await response.json();
+                if (data.success) {
+                    showToast(`Link ${data.status}d successfully!`);
+                    loadHistory();
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            showToast('URL copied to clipboard!');
+        }
+
+        uploadArea.addEventListener('click', () => imageInput.click());
+        uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.style.borderColor = '#007bff'; });
+        uploadArea.addEventListener('dragleave', () => { uploadArea.style.borderColor = 'rgba(0, 123, 255, 0.3)'; });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'rgba(0, 123, 255, 0.3)';
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) handleFileSelect(file);
+            else showToast('Please upload an image file!');
+        });
+        imageInput.addEventListener('change', (e) => { if (e.target.files[0]) handleFileSelect(e.target.files[0]); });
+
+        function handleFileSelect(file) {
+            if (file.size > 10 * 1024 * 1024) {
+                showToast('File size must be less than 10MB!');
+                return;
+            }
+            currentFile = file;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewContainer.style.display = 'block';
+                convertBtn.disabled = false;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        convertBtn.addEventListener('click', async () => {
+            if (!currentFile) return;
+            
+            loadingOverlay.style.display = 'flex';
+            
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            
+            try {
+                const formData = new FormData();
+                formData.append('image', currentFile);
+                const response = await fetch('/api/upload', { method: 'POST', body: formData });
+                const data = await response.json();
+                
+                if (data.success) {
+                    currentImageUrl = data.url;
+                    currentImageId = data.id;
+                    urlText.textContent = data.url;
+                    resultContainer.style.display = 'block';
+                    showToast('Image uploaded successfully!');
+                } else {
+                    showToast(data.error || 'Upload failed!');
+                }
+            } catch (err) {
+                showToast('Upload failed!');
+            } finally {
+                loadingOverlay.style.display = 'none';
+            }
+        });
+
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(currentImageUrl);
+            showToast('URL copied!');
+        });
+
+        downloadBtn.addEventListener('click', () => {
+            if (currentImageUrl) window.open(currentImageUrl, '_blank');
+        });
+
+        resetBtn.addEventListener('click', () => {
+            currentFile = null;
+            imageInput.value = '';
+            previewContainer.style.display = 'none';
+            resultContainer.style.display = 'none';
+            convertBtn.disabled = true;
+            previewImage.src = '';
+        });
+
+        checkAuth();
+    </script>
+</body>
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAMER LINK CONVERTER - Professional Image Hosting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #0f0f1a 25%, #1a1a2e 50%, #0f0f1a 75%, #0a0a0f 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 123, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 123, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: floatOrb 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.12), transparent);
+            top: -250px;
+            right: -200px;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08), transparent);
+            bottom: -200px;
+            left: -150px;
+            animation-delay: 5s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.08), transparent);
+            top: 50%;
+            left: 10%;
+            animation-delay: 10s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            33% { transform: translateY(-40px) translateX(30px); }
+            66% { transform: translateY(30px) translateX(-30px); }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 18px 50px;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 123, 255, 0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+        }
+
+        .nav-logo span {
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #007bff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 120px 20px 80px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .main-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 15px rgba(0, 123, 255, 0.3)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 30px rgba(0, 123, 255, 0.5)); transform: scale(1.02); }
+        }
+
+        .hero-title {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #007bff 40%, #00d4ff 70%, #ffffff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: #a0a0b0;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: #007bff;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Button Group */
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0 60px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-contact {
+            padding: 14px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 123, 255, 0.4);
+            border-radius: 50px;
+            color: #007bff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-contact:hover {
+            background: rgba(0, 123, 255, 0.1);
+            border-color: #007bff;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff, #007bff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 16px;
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            padding: 30px 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 123, 255, 0.3);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.15), rgba(0, 123, 255, 0.05));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: #007bff;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .feature-card p {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* How It Works Section */
+        .howitworks-section {
+            padding: 60px 20px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .step-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .step-card p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: #007bff;
+        }
+
+        .pricing-card.popular {
+            border-color: #007bff;
+            background: rgba(0, 123, 255, 0.05);
+        }
+
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 800;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .price span {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-card li {
+            padding: 8px 0;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .pricing-card li i {
+            color: #28a745;
+            margin-right: 8px;
+        }
+
+        .pricing-btn {
+            background: rgba(0, 123, 255, 0.2);
+            border: 1px solid #007bff;
+            color: #007bff;
+            padding: 10px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pricing-btn:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 60px 20px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            text-align: center;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            background: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+        }
+
+        .testimonial-text {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-name {
+            color: #007bff;
+            font-weight: 600;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 15px;
+            color: #888;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.1), rgba(0, 123, 255, 0.05));
+            padding: 50px;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+        }
+
+        .cta-box h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .cta-box p {
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+
+        .cta-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #666;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 20px;
+            }
+            .hero-title {
+                font-size: 28px;
+            }
+            .stats-grid {
+                gap: 30px;
+            }
+            .button-group {
+                gap: 15px;
+            }
+            .btn-primary, .btn-contact {
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+            .features-grid, .pricing-grid, .testimonials-grid, .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .cta-box {
+                padding: 30px 20px;
+            }
+            .cta-box h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="https://www.image2url.com/r2/default/images/1781308769312-81508059-0f9b-4766-97f8-23ea91aaf7b8.png" alt="Logo">
+            <span>GAMER LINK CONVERTER</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <img src="https://www.image2url.com/r2/default/images/1781308769312-81508059-0f9b-4766-97f8-23ea91aaf7b8.png" class="main-logo">
+            <h1 class="hero-title">GAMER LINK CONVERTER</h1>
+            <p class="hero-subtitle">Transform your images into shareable links instantly. Fast, secure, and completely free image hosting platform with history tracking.</p>
+            <div class="button-group">
+                <button class="btn-primary" onclick="window.location.href='/login'">Get Started <i class="fas fa-arrow-right"></i></button>
+                <button class="btn-contact" onclick="window.open('https://t.me/Connectwithgamer_bot', '_blank')"><i class="fab fa-telegram"></i> Contact Developer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card"><span class="stat-number" id="statImages">0</span><div class="stat-label">Images Hosted</div></div>
+            <div class="stat-card"><span class="stat-number">24/7</span><div class="stat-label">Uptime</div></div>
+            <div class="stat-card"><span class="stat-number">10MB</span><div class="stat-label">Max Upload</div></div>
+            <div class="stat-card"><span class="stat-number">∞</span><div class="stat-label">Free Uploads</div></div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-section">
+        <h2 class="section-title">Features</h2>
+        <p class="section-subtitle">Everything you need for image hosting</p>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-bolt"></i></div><h3>Lightning Fast</h3><p>Upload and share images in seconds</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><h3>Secure Storage</h3><p>Your images are safe with us</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-link"></i></div><h3>Shareable Links</h3><p>Get unique permanent URLs</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-history"></i></div><h3>Full History</h3><p>Track all your uploads</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-toggle-on"></i></div><h3>Link Control</h3><p>Active/Deactive anytime</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-headset"></i></div><h3>24/7 Support</h3><p>We're here to help</p></div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="howitworks-section">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Get started in 3 simple steps</p>
+        <div class="steps-grid">
+            <div class="step-card"><div class="step-number">1</div><h3>Upload Image</h3><p>Click or drag & drop your image</p></div>
+            <div class="step-card"><div class="step-number">2</div><h3>Convert to URL</h3><p>Click convert button & wait 3-5 seconds</p></div>
+            <div class="step-card"><div class="step-number">3</div><h3>Copy & Share</h3><p>Copy the URL and share anywhere</p></div>
+        </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="pricing-section">
+        <h2 class="section-title">Simple Pricing</h2>
+        <p class="section-subtitle">Choose the plan that works for you</p>
+        <div class="pricing-grid">
+            <div class="pricing-card"><h3>Free</h3><div class="price">$0<span>/forever</span></div><ul><li><i class="fas fa-check"></i> 10MB per image</li><li><i class="fas fa-check"></i> Unlimited uploads</li><li><i class="fas fa-check"></i> Full history</li><li><i class="fas fa-check"></i> Active/Deactive links</li></ul><button class="pricing-btn" onclick="window.location.href='/login'">Get Started</button></div>
+            <div class="pricing-card popular"><h3>Pro</h3><div class="price">$9<span>/month</span></div><ul><li><i class="fas fa-check"></i> 50MB per image</li><li><i class="fas fa-check"></i> Unlimited uploads</li><li><i class="fas fa-check"></i> Priority support</li><li><i class="fas fa-check"></i> Custom domain</li></ul><button class="pricing-btn" onclick="window.location.href='/login'">Coming Soon</button></div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="testimonials-section">
+        <h2 class="section-title">What Users Say</h2>
+        <p class="section-subtitle">Trusted by thousands of users</p>
+        <div class="testimonials-grid">
+            <div class="testimonial-card"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><p class="testimonial-text">"Best image hosting platform! Fast uploads and great support."</p><p class="testimonial-name">- Rahim Khan</p></div>
+            <div class="testimonial-card"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><p class="testimonial-text">"Love the history feature. Can track all my images easily."</p><p class="testimonial-name">- Sumaiya Akter</p></div>
+            <div class="testimonial-card"><div class="testimonial-avatar"><i class="fas fa-user"></i></div><p class="testimonial-text">"Simple and effective. Highly recommended for everyone."</p><p class="testimonial-name">- Mehedi Hasan</p></div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Got questions? We've got answers</p>
+        <div class="faq-grid">
+            <div class="faq-item"><div class="faq-question">Is it really free? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes! GAMER LINK CONVERTER is completely free with no hidden charges.</div></div>
+            <div class="faq-item"><div class="faq-question">How long are images stored? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Images are stored forever as long as they remain active.</div></div>
+            <div class="faq-item"><div class="faq-question">Can I delete or deactivate images? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes! You can deactivate or activate any image from your history.</div></div>
+            <div class="faq-item"><div class="faq-question">What formats are supported? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">JPG, PNG, GIF, WEBP - all popular formats are supported.</div></div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <div class="cta-box">
+            <h2>Ready to Get Started?</h2>
+            <p>Join thousands of users who trust GAMER LINK CONVERTER</p>
+            <button class="cta-btn" onclick="window.location.href='/login'">Start Now - It's Free <i class="fas fa-rocket"></i></button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2026 GAMER LINK CONVERTER. All rights reserved. | Made with <i class="fas fa-heart" style="color: #dc3545;"></i> by GAMER</p>
+    </div>
+
+    <script>
+        let count = 0;
+        const targetCount = 52800;
+        const counterElement = document.getElementById('statImages');
+        
+        function updateCounter() {
+            if (count < targetCount) {
+                count += Math.ceil(targetCount / 80);
+                if (count > targetCount) count = targetCount;
+                counterElement.textContent = count.toLocaleString();
+                setTimeout(updateCounter, 25);
+            }
+        }
+        
+        updateCounter();
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
